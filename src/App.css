@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+
+.pagination span {
+  color: blue;
+  margin: 0 15px;
+}
+
+.pagination span:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
