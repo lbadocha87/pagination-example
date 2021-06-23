@@ -12,21 +12,21 @@ function App() {
   const getData = (pageNo) => {
     axios.get('https://swapi.dev/api/planets/?page=' + pageNo)
       .then(res => {
-        setData(res.data.results)
+
+        let links = [];
+        
+        for(let i = 1; i<=Math.ceil(res.data.count/10); i++) {
+          links.push(<span key={i} onClick={()=>setPage(i)}>{i}</span>);
+        }
+
+        setPagination(links);
+
+        setData(res.data.results);
       });
   }
 
 
   useEffect(() => {
-    axios.get('https://swapi.dev/api/planets/')
-      .then(res => {
-        let links = [];
-        for(let i = 1; i<=Math.ceil(res.data.count/10); i++) {
-          links.push(<span key={i} onClick={()=>setPage(i)}>{i}</span>);
-        }
-        setPagination(links)
-      });
-
     getData(page);
   }, [page])
 
